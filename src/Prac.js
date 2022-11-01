@@ -53,9 +53,6 @@ const Modal = ({visible, close}) => {
 
     const ItemOn =(e) => {
         setItem(e.currentTarget.getAttribute('value'))
-
-        
-
     }
     console.log(item)
 
