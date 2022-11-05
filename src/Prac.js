@@ -137,8 +137,6 @@ const Prac = () => {
     }
     console.log(topR.topItem)
 
-    // const ViewImageUrl = useRecoilValue(getItemImage);
-    // const images = {ViewImageUrl};
 
 
     return (
@@ -151,8 +149,7 @@ const Prac = () => {
                     <BaseImg src={base} alt='base'></BaseImg>
                 </ImgCont>
 
-                <TopImg src={cloth01} alt='상의' visible={itemVisible}></TopImg>
-                {/* <TopImg src={cloth02} alt='상의' visible={itemVisible}></TopImg> */}
+                <TopImg src={topR.topItem} alt='상의' visible={itemVisible}></TopImg>
                 <Eyes src={eyes01} alt='눈' visible={itemVisible}></Eyes>
                 <Hair src={hair01} alt='머리' visible={itemVisible}></Hair>
     
@@ -172,13 +169,11 @@ const Prac = () => {
                 <>
                 <ModalContainer>
                     <OpenModal> 
-                        <Item src={cloth01} alt='상의1' value='cloth_01' onClick={ItemOn}></Item>
+                        <Item src={cloth01} alt='상의1' value='cloth_01' onClick={changeItem} ref={imageRef}></Item>
                         <Item src={cloth02} alt='상의2' value='cloth_02' onClick={changeItem} ref={imageRef}></Item>
                     </OpenModal>
 
                     <SaveButton> save </SaveButton>
-
-                    {/* <>{images}</> */}
                     
                 </ModalContainer>
                 </>

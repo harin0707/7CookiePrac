@@ -5,7 +5,8 @@ import cloth01 from './img/cloth_01.png'
 export const itemImageOn = atom({
         key: 'itemImage',
         default: {
-            'topItem' : {cloth01},
+            //deault 이미지 첨부
+            'topItem' : cloth01,
         }
     })
 
