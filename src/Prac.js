@@ -7,7 +7,7 @@ import eyes01 from './img/eyes_01.png'
 import eyes02 from './img/eyes_02.png'
 import hair01 from './img/hair_01.png'
 import {useRecoilState} from 'recoil'
-import {itemImageOn, itemEyesOn} from './recoil'
+import {itemTopOn, itemEyesOn} from './recoil'
 
 const Container = styled.div`
 display: flex;
@@ -102,7 +102,7 @@ const SaveButton = styled.button`
 `
 
 const Modal = ({showModal, modalType, topRef, eyesRef}) =>{
-    const [topR, setTopR] = useRecoilState(itemImageOn);
+    const [topR, setTopR] = useRecoilState(itemTopOn);
     const [eyesR, setEyesR] = useRecoilState(itemEyesOn);
 
     const handleChangeTop = (e) => {
@@ -191,7 +191,7 @@ const Prac = () => {
 
     //RecoilState 선언하기
     //아이템 사진을 눌렀을 때 해당하는 아이템 이미지 값으로 데이터 변경
-    const [topR, setTopR] = useRecoilState(itemImageOn);
+    const [topR, setTopR] = useRecoilState(itemTopOn);
     const [eyesR, setEyesR] = useRecoilState(itemEyesOn);
 
 
