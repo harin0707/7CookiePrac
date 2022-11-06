@@ -6,8 +6,8 @@ import cloth02 from './img/cloth_02.png'
 import eyes01 from './img/eyes_01.png'
 import eyes02 from './img/eyes_02.png'
 import hair01 from './img/hair_01.png'
-import {useRecoilState, useRecoilValue} from 'recoil'
-import {getItemImage, itemImageOn} from './recoil'
+import {useRecoilState} from 'recoil'
+import {itemImageOn} from './recoil'
 
 const Container = styled.div`
 display: flex;
@@ -95,18 +95,73 @@ border: blue solid 2vw;
 position: absolute;
 `
 
-const Modal = styled.div`
-`
-
 const SaveButton = styled.button`
 `
+
+const Modal = ({showModal, modalType}) =>{
+    const [topR, setTopR] = useRecoilState(itemImageOn);
+
+    const handleChangeItem = (e) => {
+        const topItem = e.currentTarget.getAttribute('src');
+        const Image = {topItem};
+        setTopR(Image);
+
+    }
+    console.log(modalType)
+    // console.log(topR.topItem);
+
+    switch (modalType){
+        case 'top' :
+            return(
+                <>
+                {showModal===true ? 
+                        <>
+                        <ModalContainer>
+                            <OpenModal> 
+                                <Item src={cloth01} alt='상의1' value='cloth_01' onClick={handleChangeItem} ></Item>
+                                <Item src={cloth02} alt='상의2' value='cloth_02' onClick={handleChangeItem} ></Item>
+                            </OpenModal>
+                            <SaveButton> save </SaveButton>
+                        </ModalContainer>
+                        </>
+                    : null}
+                    </>)
+        case 'eyes' :
+        return(
+                <>
+                {showModal===true ? 
+                        <>
+                        <ModalContainer>
+                            <OpenModal> 
+                                <Item src={eyes01} alt='눈1' value='eyes_01' onClick={handleChangeItem} ></Item>
+                                <Item src={eyes02} alt='눈2' value='eyes_02' onClick={handleChangeItem} ></Item>
+                            </OpenModal> 
+                            <SaveButton> save </SaveButton>
+                        </ModalContainer>
+                        </>
+                    : null}
+                    </>
+            )
+        default : return (null)
+        
+
+
+    }
+
+
+}
 
 const Prac = () => {
     //아이템 선택 모달창
     const [showModal, setModal] = useState(false);
-    const openModal = () =>{
+    const [modalType, setModalType] = useState('');
+
+    const openModal = (e) =>{
         setModal(!showModal);
+        setModalType(e.currentTarget.getAttribute('type'));
+
     }
+    // console.log(modalType)
 
     const closeModal = () =>{
         setModal(false);
@@ -122,18 +177,9 @@ const Prac = () => {
     }
     // console.log(top)
 
-    //Recoil 사용하기
+    //RecoilState 선언하기
     //아이템 사진을 눌렀을 때 해당하는 아이템 이미지 값으로 데이터 변경
     const [topR, setTopR] = useRecoilState(itemImageOn);
-
-
-    const handleChangeItem = (e) => {
-        const topItem = e.currentTarget.getAttribute('src');
-        const Image = {topItem};
-
-        setTopR(Image);
-        console.log(e.currentTarget.getAttribute('src'));
-    }
 
 
     return (
@@ -155,27 +201,37 @@ const Prac = () => {
         </Container>
 
         <ButContainer>
-            <Button type='top' onClick={openModal}> 상의 </Button>
-            <Button type='bottom' onClick={openModal}> 하의 </Button>
+            <Button type='top' onClick={openModal} modal='top'> 상의 </Button>
+            <Button type='eyes' onClick={openModal} modal='eyes'> 눈 </Button>
             <Button type='shoe' onClick={openModal}> 신발 </Button>
         </ButContainer>
 
-        <Modal visible={showModal} close={closeModal}>
+        <Modal showModal={showModal} close={closeModal} modalType={modalType}/>
 
-            {showModal===true ? 
+            {/* {showModal===true ? 
                 <>
                 <ModalContainer>
-                    <OpenModal> 
+
+                    if ({modalType} === 'top'){
+                        <OpenModal> 
                         <Item src={cloth01} alt='상의1' value='cloth_01' onClick={handleChangeItem} ></Item>
                         <Item src={cloth02} alt='상의2' value='cloth_02' onClick={handleChangeItem} ></Item>
-                    </OpenModal>
+                        </OpenModal>
+
+                    }
+                    else if ({modalType} === 'eyes'){
+                        <OpenModal> 
+                        <Item src={eyes01} alt='눈1' value='eyes_01' onClick={handleChangeItem} ></Item>
+                        <Item src={eyes02} alt='눈2' value='eyes_02' onClick={handleChangeItem} ></Item>
+                        </OpenModal> 
+
+                    }
 
                     <SaveButton> save </SaveButton>
                     
                 </ModalContainer>
                 </>
-            : null}
-        </Modal>
+            : null} */}
         </>
         
     )
