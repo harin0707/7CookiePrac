@@ -1,5 +1,6 @@
 import {atom, selector } from 'recoil'
 import cloth01 from './img/cloth_01.png'
+import eyes01 from './img/eyes_01.png'
 
     //Recoil 사용해보기
 export const itemImageOn = atom({
@@ -7,6 +8,15 @@ export const itemImageOn = atom({
         default: {
             //deault 이미지 첨부
             'topItem' : cloth01,
+            'eyesItem' : eyes01,
+        }
+    })
+
+export const itemEyesOn = atom({
+        key: 'eyesImage',
+        default: {
+            //deault 이미지 첨부
+            'eyesItem' : eyes01,
         }
     })
 

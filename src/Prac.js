@@ -7,7 +7,7 @@ import eyes01 from './img/eyes_01.png'
 import eyes02 from './img/eyes_02.png'
 import hair01 from './img/hair_01.png'
 import {useRecoilState} from 'recoil'
-import {itemImageOn} from './recoil'
+import {itemImageOn, itemEyesOn} from './recoil'
 
 const Container = styled.div`
 display: flex;
@@ -65,6 +65,9 @@ align-items: center;
 border: solid green;
 overflow: hidden;
 position: relative;
+
+width: 100vw;
+height: 100vw;
 `
 
 const ImgCont = styled.div`
@@ -98,17 +101,26 @@ position: absolute;
 const SaveButton = styled.button`
 `
 
-const Modal = ({showModal, modalType}) =>{
+const Modal = ({showModal, modalType, topRef, eyesRef}) =>{
     const [topR, setTopR] = useRecoilState(itemImageOn);
+    const [eyesR, setEyesR] = useRecoilState(itemEyesOn);
 
-    const handleChangeItem = (e) => {
+    const handleChangeTop = (e) => {
         const topItem = e.currentTarget.getAttribute('src');
         const Image = {topItem};
         setTopR(Image);
-
     }
-    console.log(modalType)
+    // console.log(modalType)
     // console.log(topR.topItem);
+
+    const handleChangeEyes = (e) => {
+        const eyesItem = e.currentTarget.getAttribute('src');
+        const Image = {eyesItem};
+        setEyesR(Image);
+    }
+    // console.log(eyesR.eyesItem)
+    // console.log(topR.topItem);
+
 
     switch (modalType){
         case 'top' :
@@ -118,8 +130,8 @@ const Modal = ({showModal, modalType}) =>{
                         <>
                         <ModalContainer>
                             <OpenModal> 
-                                <Item src={cloth01} alt='상의1' value='cloth_01' onClick={handleChangeItem} ></Item>
-                                <Item src={cloth02} alt='상의2' value='cloth_02' onClick={handleChangeItem} ></Item>
+                                <Item src={cloth01} alt='상의1' value='cloth_01' onClick={handleChangeTop}></Item>
+                                <Item src={cloth02} alt='상의2' value='cloth_02' onClick={handleChangeTop}></Item>
                             </OpenModal>
                             <SaveButton> save </SaveButton>
                         </ModalContainer>
@@ -133,8 +145,8 @@ const Modal = ({showModal, modalType}) =>{
                         <>
                         <ModalContainer>
                             <OpenModal> 
-                                <Item src={eyes01} alt='눈1' value='eyes_01' onClick={handleChangeItem} ></Item>
-                                <Item src={eyes02} alt='눈2' value='eyes_02' onClick={handleChangeItem} ></Item>
+                                <Item src={eyes01} alt='눈1' value='eyes_01' onClick={handleChangeEyes} ></Item>
+                                <Item src={eyes02} alt='눈2' value='eyes_02' onClick={handleChangeEyes} ></Item>
                             </OpenModal> 
                             <SaveButton> save </SaveButton>
                         </ModalContainer>
@@ -180,6 +192,7 @@ const Prac = () => {
     //RecoilState 선언하기
     //아이템 사진을 눌렀을 때 해당하는 아이템 이미지 값으로 데이터 변경
     const [topR, setTopR] = useRecoilState(itemImageOn);
+    const [eyesR, setEyesR] = useRecoilState(itemEyesOn);
 
 
     return (
@@ -192,9 +205,9 @@ const Prac = () => {
                     <BaseImg src={base} alt='base'></BaseImg>
                 </ImgCont>
 
-                <TopImg src={topR.topItem} alt='상의' visible={itemVisible}></TopImg>
-                <Eyes src={eyes01} alt='눈' visible={itemVisible}></Eyes>
-                <Hair src={hair01} alt='머리' visible={itemVisible}></Hair>
+                <TopImg src={topR.topItem} alt='상의' visible={itemVisible} ></TopImg>
+                <Eyes src={eyesR.eyesItem} alt='눈' visible={itemVisible} ></Eyes>
+                <Hair src={hair01} alt='머리' visible={itemVisible} ></Hair>
     
             </ImgContainer>
             
@@ -206,35 +219,10 @@ const Prac = () => {
             <Button type='shoe' onClick={openModal}> 신발 </Button>
         </ButContainer>
 
-        <Modal showModal={showModal} close={closeModal} modalType={modalType}/>
+        <Modal showModal={showModal} close={closeModal} modalType={modalType} />
 
-            {/* {showModal===true ? 
-                <>
-                <ModalContainer>
 
-                    if ({modalType} === 'top'){
-                        <OpenModal> 
-                        <Item src={cloth01} alt='상의1' value='cloth_01' onClick={handleChangeItem} ></Item>
-                        <Item src={cloth02} alt='상의2' value='cloth_02' onClick={handleChangeItem} ></Item>
-                        </OpenModal>
-
-                    }
-                    else if ({modalType} === 'eyes'){
-                        <OpenModal> 
-                        <Item src={eyes01} alt='눈1' value='eyes_01' onClick={handleChangeItem} ></Item>
-                        <Item src={eyes02} alt='눈2' value='eyes_02' onClick={handleChangeItem} ></Item>
-                        </OpenModal> 
-
-                    }
-
-                    <SaveButton> save </SaveButton>
-                    
-                </ModalContainer>
-                </>
-            : null} */}
-        </>
         
-    )
-}
+    </>)}
 
 export default Prac
