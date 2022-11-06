@@ -122,21 +122,18 @@ const Prac = () => {
     }
     // console.log(top)
 
-    //Recoil, useRef 사용하기
+    //Recoil 사용하기
     //아이템 사진을 눌렀을 때 해당하는 아이템 이미지 값으로 데이터 변경
     const [topR, setTopR] = useRecoilState(itemImageOn);
 
-    const imageRef = useRef();
 
-    const changeItem = () => {
-        const topItem = imageRef.current.src;
+    const handleChangeItem = (e) => {
+        const topItem = e.currentTarget.getAttribute('src');
         const Image = {topItem};
 
         setTopR(Image);
-        // console.log(Image);
+        console.log(e.currentTarget.getAttribute('src'));
     }
-    console.log(topR.topItem)
-
 
 
     return (
@@ -169,8 +166,8 @@ const Prac = () => {
                 <>
                 <ModalContainer>
                     <OpenModal> 
-                        <Item src={cloth01} alt='상의1' value='cloth_01' onClick={changeItem} ref={imageRef}></Item>
-                        <Item src={cloth02} alt='상의2' value='cloth_02' onClick={changeItem} ref={imageRef}></Item>
+                        <Item src={cloth01} alt='상의1' value='cloth_01' onClick={handleChangeItem} ></Item>
+                        <Item src={cloth02} alt='상의2' value='cloth_02' onClick={handleChangeItem} ></Item>
                     </OpenModal>
 
                     <SaveButton> save </SaveButton>

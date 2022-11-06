@@ -22,4 +22,5 @@ export const getItemImage = selector({
                 throw Error("err");
             }
         }
+    
     })
