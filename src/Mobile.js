@@ -6,6 +6,9 @@ max-width: 450px;
 min-width: 100px;
 height: auto;
 background-color: green;
+margin : 0 auto;
+
+
 
 `
 
