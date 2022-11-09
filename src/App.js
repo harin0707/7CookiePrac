@@ -11,7 +11,7 @@ const App = () => {
     <>
     <RecoilRoot>
       <Routes>
-        <Route path='/' element={<Prac/>}></Route>
+        <Route path='/7CookiePrac' element={<Prac/>}></Route>
         <Route path='/mobile' element={<Mobile/>}></Route>
       </Routes>
     </RecoilRoot>
