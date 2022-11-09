@@ -1,11 +1,5 @@
-import React, {useState, useRef} from 'react'
+import React, {useState} from 'react'
 import styled from 'styled-components'
-import base from './img/base.png'
-import cloth01 from './img/cloth_01.png'
-import cloth02 from './img/cloth_02.png'
-// import eyes01 from './img/eyes_01.png'
-// import eyes02 from './img/eyes_02.png'
-import hair01 from './img/hair_01.png'
 import {useRecoilState} from 'recoil'
 import {itemTopOn, itemEyesOn, baseEyes, baseArms, baseHead, baseNose, baseItem, baseMouth} from './recoil'
 
@@ -29,7 +23,12 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 border: black solid;
-height: 30vw;
+
+max-width: 450px;
+min-width: 100px;
+height: auto;
+/* background-color: green; */
+margin : 0 auto;
 `
 const Space = styled.div`
 text-align: center;
@@ -45,8 +44,8 @@ justify-content: center;
 
 const OpenModal = styled.div`
 border: solid 0.1vw black;
-width: 50vw;
-height: 50vw;
+/* width: 50vw;
+height: 50vw; */
 text-align: center;
 
 flex-wrap : wrap;
@@ -83,8 +82,8 @@ border: solid green;
 overflow: hidden;
 position: relative;
 
-width: 100vw;
-height: 100vw;
+/* width: 100vw;
+height: 100vw; */
 `
 
 const ImgCont = styled.div`
@@ -99,8 +98,8 @@ const BaseImg = styled.img`
 border: solid black;
 z-index: 0;
 
-width: 30vw;
-height: 30vw;
+width: 30%;
+height: auto;
 `
 
 const Eyes = styled.img`
@@ -108,48 +107,48 @@ border: solid black;
 z-index: 1;
 border: yellow solid 1vw;
 
-width: 30vw;
-height: 30vw;
+width: 30%;
+height: auto;
 `
 
 const Nose = styled.img`
 border: blue solid 2vw;
 position: absolute;
 
-width: 30vw;
-height: 30vw;
+width: 30%;
+height: auto;
 `
 
 const Head = styled.img`
 border: blue solid 2vw;
 position: absolute;
 
-width: 30vw;
-height: 30vw;
+width: 30%;
+height: auto;
 `
 
 const ItemS = styled.img`
 border: blue solid 2vw;
 position: absolute;
 
-width: 30vw;
-height: 30vw;
+width: 30%;
+height: auto;
 `
 
 const Arms = styled.img`
 border: blue solid 2vw;
 position: absolute;
 
-width: 30vw;
-height: 30vw;
+width: 30%;
+height: auto;
 `
 
 const Mouth = styled.img`
 border: blue solid 2vw;
 position: absolute;
 
-width: 30vw;
-height: 30vw;
+width: 30%;
+height: auto;
 `
 
 
@@ -373,7 +372,7 @@ const Prac = () => {
     
             </ImgContainer>
             
-        </Container>
+        
 
         <ButContainer>
             {/* <Button type='top' onClick={openModal} modal='top'> 상의 </Button> */}
@@ -386,6 +385,8 @@ const Prac = () => {
         </ButContainer>
 
         <Modal showModal={showModal} modalType={modalType}/>
+
+        </Container>
 
 
         
