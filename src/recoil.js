@@ -17,6 +17,7 @@ export const itemEyesOn = atom({
         default: {
             //deault 이미지 첨부
             'eyesItem' : eyes01,
+            
         }
     })
 
