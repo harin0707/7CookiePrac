@@ -25,9 +25,10 @@ export const itemEyesOn = atom({
 //눈사람 이미지
 export const baseEyes = atom({
     key: 'baseSnowman_e',
-    default: {
-        'baseEyes' : n_base,
-    }
+    default: [
+        {'Eyes' : n_base,
+        'EyesVal' : 'eyes_0'}
+    ]
 })
 
 export const baseNose = atom({

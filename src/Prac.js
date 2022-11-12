@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import styled from 'styled-components'
 import {useRecoilState} from 'recoil'
-import {itemTopOn, itemEyesOn, baseEyes, baseArms, baseHead, baseNose, baseItem, baseMouth} from './recoil'
+import {baseEyes, baseArms, baseHead, baseNose, baseItem, baseMouth} from './recoil'
 
 import baseSnowman from './img/민둥눈사람.png'
 import eyes01 from './img/눈1.png'
@@ -167,12 +167,15 @@ const Modal = ({showModal, modalType}) =>{
 
     //1. 눈
     const handleChangeEyes = (e) => {
-        const baseEyes = e.currentTarget.getAttribute('src');
-        const Image = {baseEyes};
-        setEyes(Image);
+        const Eyes = e.currentTarget.getAttribute('src');
+        const EyesVal = e.currentTarget.getAttribute('value');
+        const Array = [{Eyes, EyesVal}];
+
+        setEyes(Array);
     }
+    // console.log(eyes);
     // console.log(modalType)
-    // console.log(eyes.baseEyes);
+    
 
     //2. 코
     const handleChangeNose = (e) => {
@@ -209,7 +212,6 @@ const Modal = ({showModal, modalType}) =>{
         const Image = {baseHead};
         setHead(Image);
     }
-
 
 
     switch (modalType){
@@ -340,15 +342,19 @@ const Prac = () => {
 
     //RecoilState 선언하기
     //아이템 사진을 눌렀을 때 해당하는 아이템 이미지 값으로 데이터 변경
-    const [topR, setTopR] = useRecoilState(itemTopOn);
-    const [eyesR, setEyesR] = useRecoilState(itemEyesOn);
-
     const [eyes, setEyes] = useRecoilState(baseEyes);
     const [nose, setNose] = useRecoilState(baseNose);
     const [arms, setArms] = useRecoilState(baseArms);
     const [item, setItem] = useRecoilState(baseItem);
     const [mouth, setMouth] = useRecoilState(baseMouth);
     const [head, setHead] = useRecoilState(baseHead);
+
+        //localStorage 활용
+    const toLocalStorage = () =>{
+        
+
+
+}
 
 
 
@@ -363,7 +369,7 @@ const Prac = () => {
                 </ImgCont>
 
                 {/* <TopImg src={topR.topItem} alt='상의' visible={itemVisible} ></TopImg> */}
-                <Eyes src={eyes.baseEyes} alt='눈' visible={itemVisible} ></Eyes>
+                <Eyes src={eyes[0].Eyes} alt='눈' visible={itemVisible} ></Eyes>
                 <Head src={head.baseHead} alt='머리' visible={itemVisible} ></Head>
                 <Arms src={arms.baseArms} alt='팔' visible={itemVisible} ></Arms>
                 <Mouth src={mouth.baseMouth} alt='입' visible={itemVisible} ></Mouth>
@@ -382,6 +388,9 @@ const Prac = () => {
             <Button type='item' onClick={openModal} modal='item'> 소품 </Button>
             <Button type='head' onClick={openModal} modal='head'> 머리 </Button>
             <Button type='mouth' onClick={openModal} modal='mouth'> 입 </Button>
+            <Button onClick={toLocalStorage} modal='mouth'> save </Button>
+
+
         </ButContainer>
 
         <Modal showModal={showModal} modalType={modalType}/>
