@@ -33,37 +33,42 @@ export const baseEyes = atom({
 
 export const baseNose = atom({
     key: 'baseSnowman_n',
-    default: {
-        'baseNose' : n_base,
-    }
+    default: [
+        {'Nose' : n_base,
+        'NoseVal' :'nose_0'}
+    ]
 })
 
 export const baseArms = atom({
     key: 'baseSnowman_a',
-    default: {
-        'baseArms' : n_base,
-    }
+    default: [
+        {'Arms' : n_base,
+        'ArmsVal' :'arms_0'}
+    ]
 })
 
 export const baseItem = atom({
     key: 'baseSnowman_i',
-    default: {
-        'baseItem' : n_base,
-    }
+    default: [
+        {'Item' : n_base,
+        'ItemVal' :'item_0'}
+    ]
 })
 
 export const baseHead = atom({
     key: 'baseSnowman_h',
-    default: {
-        'baseHead' : n_base,
-    }
+    default: [
+        {'Head' : n_base,
+        'HeadVal' :'head_0'}
+    ]
 })
 
 export const baseMouth = atom({
     key: 'baseSnowman_m',
-    default: {
-        'baseMouth' : n_base,
-    }
+    default: [
+        {'Mouth' : n_base,
+        'MouthVal' :'mouth_0'}
+    ]
 })
 
 

@@ -170,7 +170,6 @@ const Modal = ({showModal, modalType}) =>{
         const Eyes = e.currentTarget.getAttribute('src');
         const EyesVal = e.currentTarget.getAttribute('value');
         const Array = [{Eyes, EyesVal}];
-
         setEyes(Array);
     }
     // console.log(eyes);
@@ -179,38 +178,43 @@ const Modal = ({showModal, modalType}) =>{
 
     //2. 코
     const handleChangeNose = (e) => {
-        const baseNose = e.currentTarget.getAttribute('src');
-        const Image = {baseNose};
-        setNose(Image);
+        const Nose = e.currentTarget.getAttribute('src');
+        const NoseVal = e.currentTarget.getAttribute('value');
+        const Array = [{Nose, NoseVal}];
+        setNose(Array);
     }
-    // console.log(Nose.baseNose)
+
 
     //3. 팔
     const handleChangeArms = (e) => {
-        const baseArms = e.currentTarget.getAttribute('src');
-        const Image = {baseArms};
-        setArms(Image);
+        const Arms = e.currentTarget.getAttribute('src');
+        const ArmsVal = e.currentTarget.getAttribute('value');
+        const Array = [{Arms, ArmsVal}];
+        setArms(Array);
     }
 
     //4. 입
     const handleChangeMouth = (e) => {
-        const baseMouth = e.currentTarget.getAttribute('src');
-        const Image = {baseMouth};
-        setMouth(Image);
+        const Mouth = e.currentTarget.getAttribute('src');
+        const MouthVal = e.currentTarget.getAttribute('value');
+        const Array = [{Mouth, MouthVal}];
+        setMouth(Array);
     }
 
     //5. 소품
     const handleChangeItem = (e) => {
-        const baseItem = e.currentTarget.getAttribute('src');
-        const Image = {baseItem};
-        setItem(Image);
+        const Item = e.currentTarget.getAttribute('src');
+        const ItemVal = e.currentTarget.getAttribute('value');
+        const Array = [{Item, ItemVal}];
+        setItem(Array);
     }
 
     //6. 머리
     const handleChangeHead = (e) => {
-        const baseHead = e.currentTarget.getAttribute('src');
-        const Image = {baseHead};
-        setHead(Image);
+        const Head = e.currentTarget.getAttribute('src');
+        const HeadVal = e.currentTarget.getAttribute('value');
+        const Array = [{Head, HeadVal}];
+        setHead(Array);
     }
 
 
@@ -238,8 +242,8 @@ const Modal = ({showModal, modalType}) =>{
                     <>
                             <ModalContainer>
                                 <OpenModal> 
-                                    <Item src={nose01} alt='코1' onClick={handleChangeNose} ></Item>
-                                    <Item src={nose02} alt='코2' onClick={handleChangeNose} ></Item>
+                                    <Item src={nose01} alt='코1' value='nose_01' onClick={handleChangeNose} ></Item>
+                                    <Item src={nose02} alt='코2' value='nose_02' onClick={handleChangeNose} ></Item>
                                 </OpenModal> 
                                 <SaveButton> save </SaveButton>
                             </ModalContainer>
@@ -252,8 +256,8 @@ const Modal = ({showModal, modalType}) =>{
                             <>
                             <ModalContainer>
                                 <OpenModal> 
-                                    <Item src={head01} alt='머리1' onClick={handleChangeHead} ></Item>
-                                    <Item src={head02} alt='머리2' onClick={handleChangeHead} ></Item>
+                                    <Item src={head01} alt='머리1' value='head_01' onClick={handleChangeHead} ></Item>
+                                    <Item src={head02} alt='머리2' value='head_02' onClick={handleChangeHead} ></Item>
                                 </OpenModal> 
                                 <SaveButton> save </SaveButton>
                             </ModalContainer>
@@ -267,8 +271,8 @@ const Modal = ({showModal, modalType}) =>{
                             <>
                             <ModalContainer>
                                 <OpenModal> 
-                                    <Item src={item01} alt='소품1' onClick={handleChangeItem} ></Item>
-                                    <Item src={item02} alt='소품2' onClick={handleChangeItem} ></Item>
+                                    <Item src={item01} alt='소품1' value='item_01' onClick={handleChangeItem} ></Item>
+                                    <Item src={item02} alt='소품2' value='item_02' onClick={handleChangeItem} ></Item>
                                 </OpenModal> 
                                 <SaveButton> save </SaveButton>
                             </ModalContainer>
@@ -282,8 +286,8 @@ const Modal = ({showModal, modalType}) =>{
                             <>
                             <ModalContainer>
                                 <OpenModal> 
-                                    <Item src={arms01} alt='팔1' onClick={handleChangeArms} ></Item>
-                                    <Item src={arms02} alt='팔2' onClick={handleChangeArms} ></Item>
+                                    <Item src={arms01} alt='팔1' value='arms_01' onClick={handleChangeArms} ></Item>
+                                    <Item src={arms02} alt='팔2' value='arms_02' onClick={handleChangeArms} ></Item>
                                 </OpenModal> 
                                 <SaveButton> save </SaveButton>
                             </ModalContainer>
@@ -297,8 +301,8 @@ const Modal = ({showModal, modalType}) =>{
                             <>
                             <ModalContainer>
                                 <OpenModal> 
-                                    <Item src={mouth01} alt='입1' onClick={handleChangeMouth} ></Item>
-                                    <Item src={mouth02} alt='입2' onClick={handleChangeMouth} ></Item>
+                                    <Item src={mouth01} alt='입1' value='mouth_01'  onClick={handleChangeMouth} ></Item>
+                                    <Item src={mouth02} alt='입2' value='mouth_02' onClick={handleChangeMouth} ></Item>
                                 </OpenModal> 
                                 <SaveButton> save </SaveButton>
                             </ModalContainer>
@@ -331,13 +335,13 @@ const Prac = () => {
     }
 
     //선택한 아이템 이미지 속성 전달해주는 useState
-    const [top, setTop] = useState('');
-    const [itemVisible, setItemVisible] = useState(false);
+    // const [top, setTop] = useState('');
+    // const [itemVisible, setItemVisible] = useState(false);
 
-    const ItemOn =(e) => {
-        setItemVisible(true);
-        setTop(e.currentTarget.getAttribute('src'))
-    }
+    // const ItemOn =(e) => {
+    //     setItemVisible(true);
+    //     setTop(e.currentTarget.getAttribute('src'))
+    // }
     // console.log(top)
 
     //RecoilState 선언하기
@@ -349,14 +353,19 @@ const Prac = () => {
     const [mouth, setMouth] = useRecoilState(baseMouth);
     const [head, setHead] = useRecoilState(baseHead);
 
-        //localStorage 활용
-    const toLocalStorage = () =>{
+    //localStorage 실습
+    localStorage.setItem(
+        'items', JSON.stringify(
+            {
+                eyes: eyes[0].EyesVal, 
+                nose:nose[0].NoseVal,
+                arms:arms[0].ArmsVal,
+                item:item[0].ItemVal,
+                mouth:mouth[0].MouthVal,
+                head:head[0].HeadVal,
+        }))
+
         
-
-
-}
-
-
 
     return (
         <>
@@ -368,13 +377,14 @@ const Prac = () => {
                     <BaseImg src={baseSnowman} alt='base'></BaseImg>
                 </ImgCont>
 
-                {/* <TopImg src={topR.topItem} alt='상의' visible={itemVisible} ></TopImg> */}
-                <Eyes src={eyes[0].Eyes} alt='눈' visible={itemVisible} ></Eyes>
-                <Head src={head.baseHead} alt='머리' visible={itemVisible} ></Head>
-                <Arms src={arms.baseArms} alt='팔' visible={itemVisible} ></Arms>
-                <Mouth src={mouth.baseMouth} alt='입' visible={itemVisible} ></Mouth>
-                <ItemS src={item.baseItem} alt='소품' visible={itemVisible} ></ItemS>
-                <Nose src={nose.baseNose} alt='코' visible={itemVisible} ></Nose>
+                {/* <TopImg src={topR.topItem} alt='상의'  ></TopImg> */}
+                <Eyes src={eyes[0].Eyes} alt='눈'  ></Eyes>
+                <Nose src={nose[0].Nose} alt='코'  ></Nose>
+                <Head src={head[0].Head} alt='머리'  ></Head>
+                <Arms src={arms[0].Arms} alt='팔'  ></Arms>
+                <Mouth src={mouth[0].Mouth} alt='입'  ></Mouth>
+                <ItemS src={item[0].Item} alt='소품'  ></ItemS>
+                
     
             </ImgContainer>
             
@@ -388,7 +398,6 @@ const Prac = () => {
             <Button type='item' onClick={openModal} modal='item'> 소품 </Button>
             <Button type='head' onClick={openModal} modal='head'> 머리 </Button>
             <Button type='mouth' onClick={openModal} modal='mouth'> 입 </Button>
-            <Button onClick={toLocalStorage} modal='mouth'> save </Button>
 
 
         </ButContainer>
@@ -400,5 +409,6 @@ const Prac = () => {
 
         
     </>)}
+
 
 export default Prac
