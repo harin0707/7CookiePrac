@@ -216,46 +216,50 @@ const Prac = () => {
     const [mouth, setMouth] = useRecoilState(baseMouth);
     const [head, setHead] = useRecoilState(baseHead);
 
+
     //localStorage 실습
-    const [ls, setLS] = useState([
-        baseSnowman,
-        baseSnowman,
-        baseSnowman,
-        baseSnowman,
-        baseSnowman,
-        baseSnowman,
-    ])
+    const [ls, setLS] = useState(
+        ()=>
+        [
+            JSON.parse(localStorage.getItem('eyes')),
+            JSON.parse(localStorage.getItem('nose')),
+            JSON.parse(localStorage.getItem('head')),
+            JSON.parse(localStorage.getItem('arms')),
+            JSON.parse(localStorage.getItem('mouth')),
+            JSON.parse(localStorage.getItem('item'))] || 
+        [
+            baseSnowman,
+            baseSnowman,
+            baseSnowman,
+            baseSnowman,
+            baseSnowman,
+            baseSnowman,
+        ]
+    )
+
+    // useEffect = (()=>{
+        localStorage.setItem('eyes', JSON.stringify(ls[0]))
+        localStorage.setItem('nose', JSON.stringify(ls[1]))
+        localStorage.setItem('head', JSON.stringify(ls[2]))
+        localStorage.setItem('arms', JSON.stringify(ls[3]))
+        localStorage.setItem('mouth', JSON.stringify(ls[4]))
+        localStorage.setItem('item', JSON.stringify(ls[5]))
+    // }, [ls])
 
 
-        // localStorage.setItem('eyes', JSON.stringify(eyes[0].Eyes))
-        // localStorage.setItem('nose', JSON.stringify(nose[0].Nose))
-        // localStorage.setItem('head', JSON.stringify(head[0].Head))
-        // localStorage.setItem('arms', JSON.stringify(arms[0].Arms))
-        // localStorage.setItem('mouth', JSON.stringify(mouth[0].Mouth))
-        // localStorage.setItem('item', JSON.stringify(item[0].Item))
-
-
-
-    
 
     const saveToLS = () =>{
         setLS([
-            localStorage.getItem('eyes'),
-            localStorage.getItem('nose'),
-            localStorage.getItem('head'),
-            localStorage.getItem('arms'),
-            localStorage.getItem('mouth'),
-            localStorage.getItem('item')])
+            eyes[0].Eyes, 
+            nose[0].Nose, 
+            head[0].Head, 
+            arms[0].Arms, 
+            mouth[0].Mouth, 
+            item[0].Item
+        ])
+            
     }
-
-    useEffect = (()=>{
-        localStorage.setItem('eyes', JSON.stringify(eyes[0].Eyes))
-        localStorage.setItem('nose', JSON.stringify(nose[0].Nose))
-        localStorage.setItem('head', JSON.stringify(head[0].Head))
-        localStorage.setItem('arms', JSON.stringify(arms[0].Arms))
-        localStorage.setItem('mouth', JSON.stringify(mouth[0].Mouth))
-        localStorage.setItem('item', JSON.stringify(item[0].Item))
-    }, [])
+    // localStorage.setItem('eyes', JSON.stringify(ls[0]))
     
 
     return (
