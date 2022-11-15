@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import styled from 'styled-components'
 import {useRecoilState} from 'recoil'
 import {baseEyes, baseArms, baseHead, baseNose, baseItem, baseMouth} from './recoil'
@@ -32,6 +32,7 @@ const Modal = ({showModal, modalType}) =>{
         const Eyes = e.currentTarget.getAttribute('src');
         const EyesVal = e.currentTarget.getAttribute('value');
         const Array = [{Eyes, EyesVal}];
+        
         setEyes(Array);
     }
     // console.log(eyes);
@@ -92,7 +93,7 @@ const Modal = ({showModal, modalType}) =>{
                                 <Item src={eyes01} alt='눈1' value='eyes_01' onClick={handleChangeEyes} ></Item>
                                 <Item src={eyes02} alt='눈2' value='eyes_02' onClick={handleChangeEyes} ></Item>
                             </OpenModal> 
-                            <SaveButton> save </SaveButton>
+    
                         </ModalContainer>
                         </>: null }</>
             )
@@ -107,7 +108,7 @@ const Modal = ({showModal, modalType}) =>{
                                     <Item src={nose01} alt='코1' value='nose_01' onClick={handleChangeNose} ></Item>
                                     <Item src={nose02} alt='코2' value='nose_02' onClick={handleChangeNose} ></Item>
                                 </OpenModal> 
-                                <SaveButton> save </SaveButton>
+        
                             </ModalContainer>
                             </>:null}</>
         )
@@ -121,7 +122,7 @@ const Modal = ({showModal, modalType}) =>{
                                     <Item src={head01} alt='머리1' value='head_01' onClick={handleChangeHead} ></Item>
                                     <Item src={head02} alt='머리2' value='head_02' onClick={handleChangeHead} ></Item>
                                 </OpenModal> 
-                                <SaveButton> save </SaveButton>
+        
                             </ModalContainer>
                             </>
                         : null}
@@ -136,7 +137,7 @@ const Modal = ({showModal, modalType}) =>{
                                     <Item src={item01} alt='소품1' value='item_01' onClick={handleChangeItem} ></Item>
                                     <Item src={item02} alt='소품2' value='item_02' onClick={handleChangeItem} ></Item>
                                 </OpenModal> 
-                                <SaveButton> save </SaveButton>
+        
                             </ModalContainer>
                             </>
                         : null}
@@ -151,7 +152,7 @@ const Modal = ({showModal, modalType}) =>{
                                     <Item src={arms01} alt='팔1' value='arms_01' onClick={handleChangeArms} ></Item>
                                     <Item src={arms02} alt='팔2' value='arms_02' onClick={handleChangeArms} ></Item>
                                 </OpenModal> 
-                                <SaveButton> save </SaveButton>
+        
                             </ModalContainer>
                             </>
                         : null}
@@ -166,7 +167,7 @@ const Modal = ({showModal, modalType}) =>{
                                     <Item src={mouth01} alt='입1' value='mouth_01'  onClick={handleChangeMouth} ></Item>
                                     <Item src={mouth02} alt='입2' value='mouth_02' onClick={handleChangeMouth} ></Item>
                                 </OpenModal> 
-                                <SaveButton> save </SaveButton>
+        
                             </ModalContainer>
                             </>
                         : null}
@@ -216,36 +217,45 @@ const Prac = () => {
     const [head, setHead] = useRecoilState(baseHead);
 
     //localStorage 실습
-    // localStorage.setItem(
-    //     'items', JSON.stringify(
-    //         {
-    //             eyes: eyes[0].EyesVal, 
-    //             nose:nose[0].NoseVal,
-    //             arms:arms[0].ArmsVal,
-    //             item:item[0].ItemVal,
-    //             mouth:mouth[0].MouthVal,
-    //             head:head[0].HeadVal,
-    //     }))
+    const [ls, setLS] = useState([
+        baseSnowman,
+        baseSnowman,
+        baseSnowman,
+        baseSnowman,
+        baseSnowman,
+        baseSnowman,
+    ])
 
-    localStorage.setItem('eyes', `${eyes[0].Eyes}`)
-    localStorage.setItem('nose', `${nose[0].Nose}`)
-    localStorage.setItem('head', `${head[0].Head}`)
-    localStorage.setItem('arms', `${arms[0].Arms}`)
-    localStorage.setItem('mouth', `${mouth[0].Mouth}`)
-    localStorage.setItem('item', `${item[0].Item}`)
 
-    const clothes = 
-    [
-        localStorage.getItem('eyes'),
-        localStorage.getItem('nose'),
-        localStorage.getItem('head'),
-        localStorage.getItem('arms'),
-        localStorage.getItem('mouth'),
-        localStorage.getItem('item')
-]
+        // localStorage.setItem('eyes', JSON.stringify(eyes[0].Eyes))
+        // localStorage.setItem('nose', JSON.stringify(nose[0].Nose))
+        // localStorage.setItem('head', JSON.stringify(head[0].Head))
+        // localStorage.setItem('arms', JSON.stringify(arms[0].Arms))
+        // localStorage.setItem('mouth', JSON.stringify(mouth[0].Mouth))
+        // localStorage.setItem('item', JSON.stringify(item[0].Item))
 
-console.log(clothes)
 
+
+    
+
+    const saveToLS = () =>{
+        setLS([
+            localStorage.getItem('eyes'),
+            localStorage.getItem('nose'),
+            localStorage.getItem('head'),
+            localStorage.getItem('arms'),
+            localStorage.getItem('mouth'),
+            localStorage.getItem('item')])
+    }
+
+    useEffect = (()=>{
+        localStorage.setItem('eyes', JSON.stringify(eyes[0].Eyes))
+        localStorage.setItem('nose', JSON.stringify(nose[0].Nose))
+        localStorage.setItem('head', JSON.stringify(head[0].Head))
+        localStorage.setItem('arms', JSON.stringify(arms[0].Arms))
+        localStorage.setItem('mouth', JSON.stringify(mouth[0].Mouth))
+        localStorage.setItem('item', JSON.stringify(item[0].Item))
+    }, [])
     
 
     return (
@@ -284,20 +294,21 @@ console.log(clothes)
         </ButContainer>
 
         <Modal showModal={showModal} modalType={modalType}/>
+        <SaveButton onClick={saveToLS}> save </SaveButton>
 
 
         {/* localStorage 실습 */}
         <ImgContainer>
-                {/* <ImgCont>
+                <ImgCont>
                     <BaseImg src={baseSnowman} alt='base'></BaseImg>
                 </ImgCont>
 
-                <Eyes src={clothes[0]} alt='눈'  ></Eyes>
-                <Nose src={clothes[1]} alt='코'  ></Nose>
-                <Head src={clothes[2]} alt='머리'  ></Head>
-                <Arms src={clothes[3]} alt='팔'  ></Arms>
-                <Mouth src={clothes[4]} alt='입'  ></Mouth>
-                <ItemS src={clothes[5]} alt='소품'  ></ItemS> */}
+                <Eyes src={ls[0]} alt='눈'  ></Eyes>
+                <Nose src={ls[1]} alt='코'  ></Nose>
+                <Head src={ls[2]} alt='머리'  ></Head>
+                <Arms src={ls[3]} alt='팔'  ></Arms>
+                <Mouth src={ls[4]} alt='입'  ></Mouth>
+                <ItemS src={ls[5]} alt='소품'  ></ItemS>
 
             </ImgContainer>
 
