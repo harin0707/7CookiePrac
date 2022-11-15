@@ -249,6 +249,7 @@ const Prac = () => {
 
 
     const saveToLS = () =>{
+        //save 버튼 한 번 더 눌렀을 때 되돌리는 기능 없애기
         setLS([
             eyes[0].Eyes, 
             nose[0].Nose, 
@@ -256,10 +257,26 @@ const Prac = () => {
             arms[0].Arms, 
             mouth[0].Mouth, 
             item[0].Item
+        ])}
+
+    const deleteLS = () =>{
+        localStorage.removeItem('eyes')
+        localStorage.removeItem('head')
+        localStorage.removeItem('nose')
+        localStorage.removeItem('arms')
+        localStorage.removeItem('item')
+        localStorage.removeItem('mouth')
+
+        setLS([
+            baseSnowman,
+            baseSnowman,
+            baseSnowman,
+            baseSnowman,
+            baseSnowman,
+            baseSnowman,
         ])
             
     }
-    // localStorage.setItem('eyes', JSON.stringify(ls[0]))
     
 
     return (
@@ -299,6 +316,7 @@ const Prac = () => {
 
         <Modal showModal={showModal} modalType={modalType}/>
         <SaveButton onClick={saveToLS}> save </SaveButton>
+        <Button onClick={deleteLS}> delete </Button>
 
 
         {/* localStorage 실습 */}
