@@ -17,144 +17,6 @@ import head02 from './img/머리2.png'
 import mouth01 from './img/입1.png'
 import mouth02 from './img/입2.png'
 
-const Container = styled.div`
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-border: black solid;
-
-max-width: 450px;
-min-width: 100px;
-height: auto;
-margin : 0 auto;
-position: relative;
-`
-const Space = styled.div`
-text-align: center;
-`
-
-const Button = styled.button`
-`
-
-const ButContainer = styled.div`
-display: flex;
-justify-content: center;
-`
-
-const OpenModal = styled.div`
-border: solid 0.1vw black;
-/* width: 50vw;
-height: 50vw; */
-text-align: center;
-
-flex-wrap : wrap;
-
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-`
-
-const ModalContainer= styled.div`
-display: flex;
-justify-content: center;
-align-items: center;
-
-border: solid 1vw purple;
-display: flex;
-flex-direction: column;
-`
-
-const Item = styled.img`
-border: solid black 0.1vw;
-
-width: 50%;
-height: 50%;
-`
-
-const ImgContainer=styled.div`
-display: flex;
-justify-content: center;
-align-items: center;
-
-border: solid green;
-overflow: hidden;
-position: relative;
-
-/* width: 100vw;
-height: 100vw; */
-`
-
-const ImgCont = styled.div`
-position: absolute;
-display: flex;
-justify-content: center;
-align-items: center;
-border: solid 1vw red;
-`
-
-const BaseImg = styled.img`
-border: solid black;
-z-index: 0;
-
-width: 30%;
-height: auto;
-`
-
-const Eyes = styled.img`
-border: solid black;
-z-index: 1;
-border: yellow solid 1vw;
-
-width: 30%;
-height: auto;
-`
-
-const Nose = styled.img`
-border: blue solid 2vw;
-position: absolute;
-
-width: 30%;
-height: auto;
-`
-
-const Head = styled.img`
-border: blue solid 2vw;
-position: absolute;
-
-width: 30%;
-height: auto;
-`
-
-const ItemS = styled.img`
-border: blue solid 2vw;
-position: absolute;
-
-width: 30%;
-height: auto;
-`
-
-const Arms = styled.img`
-border: blue solid 2vw;
-position: absolute;
-
-width: 30%;
-height: auto;
-`
-
-const Mouth = styled.img`
-border: blue solid 2vw;
-position: absolute;
-
-width: 30%;
-height: auto;
-`
-
-
-
-const SaveButton = styled.button`
-`
 
 const Modal = ({showModal, modalType}) =>{
     // const [topR, setTopR] = useRecoilState(itemTopOn);
@@ -354,18 +216,37 @@ const Prac = () => {
     const [head, setHead] = useRecoilState(baseHead);
 
     //localStorage 실습
-    localStorage.setItem(
-        'items', JSON.stringify(
-            {
-                eyes: eyes[0].EyesVal, 
-                nose:nose[0].NoseVal,
-                arms:arms[0].ArmsVal,
-                item:item[0].ItemVal,
-                mouth:mouth[0].MouthVal,
-                head:head[0].HeadVal,
-        }))
+    // localStorage.setItem(
+    //     'items', JSON.stringify(
+    //         {
+    //             eyes: eyes[0].EyesVal, 
+    //             nose:nose[0].NoseVal,
+    //             arms:arms[0].ArmsVal,
+    //             item:item[0].ItemVal,
+    //             mouth:mouth[0].MouthVal,
+    //             head:head[0].HeadVal,
+    //     }))
 
-        
+    localStorage.setItem('eyes', `${eyes[0].Eyes}`)
+    localStorage.setItem('nose', `${nose[0].Nose}`)
+    localStorage.setItem('head', `${head[0].Head}`)
+    localStorage.setItem('arms', `${arms[0].Arms}`)
+    localStorage.setItem('mouth', `${mouth[0].Mouth}`)
+    localStorage.setItem('item', `${item[0].Item}`)
+
+    const clothes = 
+    [
+        localStorage.getItem('eyes'),
+        localStorage.getItem('nose'),
+        localStorage.getItem('head'),
+        localStorage.getItem('arms'),
+        localStorage.getItem('mouth'),
+        localStorage.getItem('item')
+]
+
+console.log(clothes)
+
+    
 
     return (
         <>
@@ -404,6 +285,23 @@ const Prac = () => {
 
         <Modal showModal={showModal} modalType={modalType}/>
 
+
+        {/* localStorage 실습 */}
+        <ImgContainer>
+                {/* <ImgCont>
+                    <BaseImg src={baseSnowman} alt='base'></BaseImg>
+                </ImgCont>
+
+                <Eyes src={clothes[0]} alt='눈'  ></Eyes>
+                <Nose src={clothes[1]} alt='코'  ></Nose>
+                <Head src={clothes[2]} alt='머리'  ></Head>
+                <Arms src={clothes[3]} alt='팔'  ></Arms>
+                <Mouth src={clothes[4]} alt='입'  ></Mouth>
+                <ItemS src={clothes[5]} alt='소품'  ></ItemS> */}
+
+            </ImgContainer>
+
+
         </Container>
 
 
@@ -412,3 +310,150 @@ const Prac = () => {
 
 
 export default Prac
+
+const Container = styled.div`
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+border: black solid;
+
+max-width: 28.125rem; 
+min-width: 6.25rem;
+
+height: auto;
+margin : 0 auto;
+position: relative;
+`
+const Space = styled.div`
+text-align: center;
+`
+
+const Button = styled.button`
+`
+
+const ButContainer = styled.div`
+display: flex;
+justify-content: center;
+`
+
+const OpenModal = styled.div`
+border: solid 0.1vw black;
+/* width: 50vw;
+height: 50vw; */
+text-align: center;
+
+flex-wrap : wrap;
+
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+`
+
+const ModalContainer= styled.div`
+display: flex;
+justify-content: center;
+align-items: center;
+
+border: solid 1vw purple;
+display: flex;
+flex-direction: column;
+`
+
+const Item = styled.img`
+border: solid black 0.1vw;
+
+width: 50%;
+height: 50%;
+`
+
+const ImgContainer=styled.div`
+display: flex;
+justify-content: center;
+align-items: center;
+
+border: solid green;
+overflow: hidden;
+position: relative;
+
+/* width: 100vw;
+height: 100vw; */
+`
+
+const ImgCont = styled.div`
+position: absolute;
+display: flex;
+justify-content: center;
+align-items: center;
+border: solid 1vw red;
+`
+
+const BaseImg = styled.img`
+border: solid black;
+z-index: 0;
+
+width: 30%;
+height: auto;
+`
+
+const Eyes = styled.img`
+border: solid black;
+z-index: 1;
+border: yellow solid 1vw;
+
+width: 30%;
+height: auto;
+`
+
+const Nose = styled.img`
+border: blue solid 2vw;
+position: absolute;
+
+width: 30%;
+height: auto;
+`
+
+const Head = styled.img`
+border: blue solid 2vw;
+position: absolute;
+
+width: 30%;
+height: auto;
+`
+
+const ItemS = styled.img`
+border: blue solid 2vw;
+position: absolute;
+
+width: 30%;
+height: auto;
+`
+
+const Arms = styled.img`
+border: blue solid 2vw;
+position: absolute;
+
+width: 30%;
+height: auto;
+`
+
+const Mouth = styled.img`
+border: blue solid 2vw;
+position: absolute;
+
+width: 30%;
+height: auto;
+`
+
+
+
+const SaveButton = styled.button`
+`
+
+const LS = styled.img`
+position: absolute;
+
+width: 30%;
+height: auto;
+`

@@ -1,0 +1,26 @@
+{
+    "category": {
+        "eyes" : {
+            "eyes01" : "./img/눈1.png",
+            "eyes02" : "./img/눈2.png"
+        },
+        "nose" : {
+            "nose01" : "./img/코1.png",
+            "nose02" : "./img/코2.png"
+        },
+        "mouth" : {
+            "mouth01" : "./img/입1.png",
+            "mouth02" : "./img/입2.png"
+        },
+        "head" : {
+            "head01" : "./img/머리1.png",
+            "head02" : "./img/머리2.png"
+        },
+        "arms" : {
+            "arms01" : "./img/팔1.png",
+            "arms02" : "./img/팔2.png"
+        }
+
+
+    }
+}
